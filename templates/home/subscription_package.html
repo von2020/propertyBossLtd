@@ -1,0 +1,93 @@
+{% extends 'base/user_dashboardBase.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="col-lg-9 col-md-8">
+    <div class="dashboard-body">
+        
+        <div class="row">
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="dashboard_stats_wrap widget-1">
+                    <div class="dashboard_stats_wrap_content"><h4>607</h4> <span>Listings Included</span></div>
+                    <div class="dashboard_stats_wrap-icon"><i class="ti-location-pin"></i></div>
+                </div>	
+            </div>
+            
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="dashboard_stats_wrap widget-2">
+                    <div class="dashboard_stats_wrap_content"><h4>102</h4> <span>Listings Remaining</span></div>
+                    <div class="dashboard_stats_wrap-icon"><i class="ti-pie-chart"></i></div>
+                </div>	
+            </div>
+            
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="dashboard_stats_wrap widget-4">
+                    <div class="dashboard_stats_wrap_content"><h4>70</h4> <span>Featured Included</span></div>
+                    <div class="dashboard_stats_wrap-icon"><i class="ti-user"></i></div>
+                </div>	
+            </div>
+
+        </div>
+        <!-- Row -->
+        
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+            <form method="POST" action="">
+                <div class="row">
+                    {% for plan in subscription_plan %}
+                    <!-- Single Package -->
+                    <div class="col-lg-4 col-md-4 c-l-sm-12">
+                        <div class="package-box">
+                            <span class="theme-cl">{{plan.name}}</span>
+                            <h4 class="packages-features-title">NGN {{plan.amount}} / {{plan.duration}}</h4>
+                            <ul class="packages-lists-list">
+                                <li>{{plan.listings}} listings</li>
+                                <li>{{plan.featured}} Featured</li>
+                                <li>{{plan.images}} Images</li>
+                                <li>Help & Support</li>
+                            </ul>
+                            <div class="buypackage">
+                                <div class="switchbtn paying">
+                                    <input id="gold" class="switchbtn-checkbox" type="radio" value="2" checked name="package7">
+                                    <label class="switchbtn-label" for="gold"></label>
+                                </div>
+                                <span>Switch to this package</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                
+                </div>
+                
+                <div class="row mt-5">
+                    <div class="col-lg-12 col-md-12">
+                        <h4>Payment Method</h4>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <button href="#" class="pay-btn paypal" type="submit">Pay with PayPal</button>
+                        <!-- <a href="#" class="pay-btn stripe">Pay with Stripe</a> -->
+                        <!-- <a href="#" class="pay-btn wire-trans">Wire Transfer</a> -->
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+        <!-- Row -->
+        
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <footer class="text-center">
+                    <p class="mb-0">© 2021<a href="#"> PropertyBoss </a> All Rights Reserved</p>
+                </footer>
+            </div>
+        </div>
+        <!-- Row -->
+
+    </div>
+
+</div>
+
+{% endblock %}

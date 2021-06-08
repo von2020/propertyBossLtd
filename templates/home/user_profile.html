@@ -1,0 +1,100 @@
+
+{% extends 'base/user_dashboardBase.html' %}
+{% load static %}
+
+{% block content %}
+
+            
+            <div class="col-lg-9 col-md-8 col-sm-12">
+                <div class="dashboard-body">
+                
+                    <div class="dashboard-wraper">
+                    
+                        <!-- Basic Information -->
+                        <div class="frm_submit_block">	
+                            <h4>My Account</h4>
+                            <div class="frm_submit_wrap">
+                                <div class="form-row">
+                                
+                                    <div class="form-group col-md-6">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control" value="{{request.user.firstname}}" readonly>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" value="{{request.user.lastname}}" readonly>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" value="{{request.user.email}}" readonly>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label>Role</label>
+                                        <input type="text" class="form-control" value="{{request.user.role}}" readonly>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label>Phone</label>
+                                        <input type="text" class="form-control" value="{{request.user.phone_number}}" readonly>
+                                    </div>
+                                    
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- <div class="frm_submit_block">	
+                            <h4>Social Accounts</h4>
+                            <div class="frm_submit_wrap">
+                                <div class="form-row">
+                                
+                                    <div class="form-group col-md-6">
+                                        <label>Facebook</label>
+                                        <input type="text" class="form-control" value="https://facebook.com/">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label>Twitter</label>
+                                        <input type="email" class="form-control" value="https://twitter.com/">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label>Google Plus</label>
+                                        <input type="text" class="form-control" value="https://googleplus.com">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label>LinkedIn</label>
+                                        <input type="text" class="form-control" value="https://linkedin.com/">
+                                    </div>
+                                    
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        <button class="btn btn-theme bg-2" type="submit">Save Changes</button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div> -->
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 mt-4">
+                            <footer class="text-center">
+                                <p class="mb-0">© 2020 Verio. Designd By <a href="#">Pexel Experts</a> All Rights Reserved</p>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- row -->
+                
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

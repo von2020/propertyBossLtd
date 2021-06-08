@@ -1,0 +1,78 @@
+{% extends 'base/user_dashboardBase.html' %}
+{% load static %}
+
+{% block content %}
+
+
+            
+            <div class="col-lg-9 col-md-8 col-sm-12">
+                <div class="dashboard-body">
+
+                    
+                    <!-- Bookmark Property -->
+                    <div class="frm_submit_block mb-3">	
+                        <h4>My Property</h4>
+                    </div>
+                        
+                    <div class="row">
+
+                        <!-- Single Property -->
+                        {% for props in featured_props %}
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="dashboard_property_list">
+                                <div class="dashboard_property_list_thumb">
+                                    <img src="{{ props.imageURL_one }}" class="img-fluid" alt="" />
+                                    <!-- <span class="dashboard_pr_status published">Published</span> -->
+                                </div>
+                                <div class="dashboard_property_list_content">
+                                    <h4>{{ props.title}}</h4>
+                                    <span><i class="ti-location-pin"></i>{{ props.area}}</span>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                        <!-- Single Property -->
+                        {% for prop in props %}
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="dashboard_property_list">
+                                <div class="dashboard_property_list_thumb">
+                                    <img src="{{ prop.imageURL_one }}" class="img-fluid" alt="" />
+                                    <!-- <span class="dashboard_pr_status published">Published</span> -->
+                                </div>
+                                <div class="dashboard_property_list_content">
+                                    <h4>{{ prop.title}}</h4>
+                                    <span><i class="ti-location-pin"></i>{{ prop.area}}</span>
+                                </div>
+                                <!-- <div class="dashboard_property_list_footer">
+                                    <a href="#" class="text-featured" data-toggle="tooltip" title="Make Featured"><i class="ti-star"></i></a>
+                                    <a href="#" data-toggle="tooltip" title="Edit Property"><i class="ti-pencil"></i></a>
+                                    <a href="#" data-toggle="tooltip" title="302 Views"><i class="ti-eye"></i></a>
+                                    <a href="#" data-toggle="tooltip" title="Delete Property"><i class="ti-close"></i></a>
+                                    <a href="#" data-toggle="tooltip" title="Pause"><i class="ti-control-pause"></i></a>
+                                </div> -->
+                            </div>
+                        </div>
+                        {% endfor %}
+                                           
+                    </div>
+                    <!-- row -->
+                    
+                    
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 mt-4">
+                            <footer class="text-center">
+                                <p class="mb-0">© 2020 <a>PropertyBoss</a> All Rights Reserved</p>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- row -->
+                    
+                </div>
+                    
+            </div>
+            
+        
+
+{% endblock %}
