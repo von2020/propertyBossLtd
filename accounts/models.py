@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 # from properties.models import Property
 from django.utils import timezone
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from datetime import datetime, timedelta, timezone, tzinfo
 # Create your models here.
 
 
@@ -40,8 +43,10 @@ class UserRegistration(AbstractBaseUser):
     lastname          = models.CharField(max_length=200,default='')
     role              = models.CharField(max_length=200,default='')
     phone_number      = models.IntegerField(default=0)
+    whatsapp_phone_number = models.IntegerField(default=0)
     profile_pic       = models.ImageField(null=True, blank=True)
-    created_on        = models.DateTimeField(default=timezone.now)
+    id_card           = models.FileField(upload_to='documents/%Y/%m/%d', default='', null=True, blank=True)
+    created_on        = models.DateTimeField(auto_now_add=True)
     is_active         = models.BooleanField(default=True)
     is_admin          = models.BooleanField(default=False)
     
@@ -69,6 +74,15 @@ class UserRegistration(AbstractBaseUser):
     def is_staff(self):
         return self.is_admin
 
+class UpdateProfile(models.Model):
+    profile_pic       = models.ImageField(null=True, blank=True)
+    id_card           = models.FileField(upload_to='documents/%Y/%m/%d', default='')
+    user              = models.ForeignKey(UserRegistration, on_delete= models.CASCADE, blank=True, null=True)
+    created_on        = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.email
+
 class Review(models.Model):
     messages       = models.TextField(max_length=50, verbose_name='messages')
     property_title = models.CharField(max_length=20, verbose_name='property_title')
@@ -78,52 +92,59 @@ class Review(models.Model):
     def __str__(self):
         return self.name
 
-# class Standard(models.Model):
-#     name               = models.CharField(max_length=20, verbose_name='name_standard', default='')
-#     featured           = models.IntegerField(default=0)
-#     duration           = models.CharField(max_length=20, verbose_name='duration')
-#     images             = models.CharField(max_length=20, verbose_name='images')
-#     amount             = models.FloatField(default=0)
-#     listings           = models.IntegerField(default=0)
 
-#     def __str__(self):
-#         return self.name
 
-# class Premium(models.Model):
-#     name               = models.CharField(max_length=20, verbose_name='name_premium', default='')
-#     featured           = models.IntegerField(default=0)
-#     duration           = models.CharField(max_length=20, verbose_name='duration')
-#     images             = models.CharField(max_length=20, verbose_name='images')
-#     amount             = models.FloatField(default=0)
-#     listings           = models.IntegerField(default=0)
 
-#     def __str__(self):
-#         return self.name
 
 class Plan(models.Model):
-    name               = models.CharField(max_length=20, verbose_name='name', default='')
-    featured           = models.IntegerField(default=0)
-    duration           = models.CharField(max_length=20, verbose_name='duration')
+    plan_choices =(
+        ('Gold', 'Gold'),
+        ('Premium', 'Premium'),
+        ('Standard', 'Standard'),
+        ('Free', 'Free'),
+    )
+    plan_duration =(
+        ('Days', 'Days'),
+        ('Weeks', 'Weeks'),
+        ('Months', 'Months'),
+    )
+    slug               = models.SlugField(null=True, blank=True)
+    plan_type          = models.CharField(choices=plan_choices, default='Free', max_length=30)
+    duration           = models.PositiveIntegerField(default=7)
+    duration_period    = models.CharField(choices=plan_duration, default='Days', max_length=100)
     images             = models.CharField(max_length=20, verbose_name='images')
     amount             = models.FloatField(default=0)
     listings           = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return self.plan_type
 
+
+class UserPlan(models.Model):
+    user         = models.OneToOneField(UserRegistration,related_name='user_plan',on_delete=models.SET_NULL, null=True)
+    plan         = models.ForeignKey(Plan, on_delete=models.SET_NULL, null=True)
+    def __str__(self):
+        return self.user.email
+
+@receiver(post_save, sender=UserPlan)
+def create_subscription(sender, instance, *args, **kwargs):
+    if instance:
+        Subscription.objects.create(user_plan=instance, expires_in=datetime.now().date() + timedelta(days=instance.plan.duration))
 
 
 class Subscription(models.Model):
-    customer           = models.ForeignKey(UserRegistration, on_delete= models.CASCADE, related_name='customer', blank=True, null=True)
-    payment_date       = models.DateTimeField(default=timezone.now)
-    duration           = models.CharField(max_length=20, verbose_name='duration')
-    plan               = models.ForeignKey(Plan, on_delete= models.CASCADE, related_name='plan', blank=True, null=True)
-    amount             = models.FloatField(default=0)
-    listings           = models.IntegerField(default=0)
-    is_standard        = models.BooleanField(default=False)
-    is_premium         = models.BooleanField(default=False)
-    is_gold            = models.BooleanField(default=False)
+    user_plan          = models.ForeignKey(UserPlan, on_delete=models.SET_NULL, null=True)
+    expires_in         = models.DateTimeField(auto_now_add=True)
+    active             = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.duration
+        return self.user_plan.user.email
 
+class PayHistory(models.Model):
+    user           = models.ForeignKey(UserRegistration, on_delete=models.CASCADE, default=None)
+    payment_for    = models.ForeignKey(Plan, on_delete=models.SET_NULL, null=True)
+    amount         = models.FloatField(default=0)
+    date           = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.email

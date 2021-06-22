@@ -146,7 +146,7 @@
 								<li>
 									<div class="btn-group account-drop">
 										<button type="button" class="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											<img src="https://via.placeholder.com/500x500" class="avater-img" alt="">Hi, {{request.user.firstname}}  {{request.user.lastname}}
+											<img src="{% static 'assets/img/avatar.png' %}" class="avater-img" alt="">Hi, {{request.user.firstname}}  {{request.user.lastname}}
 										</button>
 										<div class="dropdown-menu pull-right animated flipInX">
 											<a href="my-profile.html"><i class="ti-user"></i>My Profile</a>                                  
@@ -154,6 +154,7 @@
 											<a href="bookmark-list.html"><i class="ti-bookmark"></i>Bookmarked Listings</a>                                   
 											<a class="active" href="change-password.html"><i class="ti-unlock"></i>Change Password</a>
 										</div>
+										
 									</div>
 								</li>
 							</ul>
@@ -177,7 +178,8 @@
 								<div class="dash_user_menues">
 									<ul>
 										<li class="active"><a href="/accounts/user_dashboard"><i class="ti-dashboard"></i>Dashboard</a></li>
-										<li><a href="/accounts/user_profile"><i class="ti-user"></i>My Profile</a></li>
+										<li><a href="/accounts/view_profile"><i class="ti-layers"></i>View Profile</a></li>
+										<li><a href="/accounts/user_profile/{{request.user.id}}"><i class="ti-user"></i>Edit Profile</a></li>
 										<li><a href="/properties/my_properties"><i class="ti-layers"></i>My Properties</a></li>
 										<li><a href="/accounts/subscription"><i class="ti-gift"></i>Choose Package</a></li>
 										<li><a href="/properties/add_property"><i class="ti-pencil-alt"></i>Submit New Property</a></li>

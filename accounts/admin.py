@@ -1,5 +1,5 @@
 from django.contrib import admin
-from accounts.models import UserRegistration, Subscription, Plan
+from accounts.models import UserRegistration, Subscription, Plan, UserPlan
 from properties.models import Property, FeaturedProperty
 
 # Register your models here.
@@ -10,14 +10,15 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ['email', 'created_on']
 
 class SubscriptionAdmin(admin.ModelAdmin):
-    list_display = ('customer', 'payment_date', 'duration','amount','listings',)
-    list_filter = ("customer",)
-    search_fields = ['customer', 'duration']
+    list_display = ('user_plan', 'expires_in', 'active',)
+    list_filter = ("user_plan",)
+    search_fields = ['user_plan', 'expires_in']
 
 class PropertyAdmin(admin.ModelAdmin):
     list_display = ('title', 'status', 'types','created_on',)
     list_filter = ("title",)
     search_fields = ['title', 'created_on']
+    prepopulated_fields = {'slug': ('title',)}
 
 class FeaturedPropertyAdmin(admin.ModelAdmin):
     list_display = ('title', 'status', 'types','created_on',)
@@ -27,5 +28,6 @@ class FeaturedPropertyAdmin(admin.ModelAdmin):
 admin.site.register(UserRegistration,UserAdmin)
 admin.site.register(Subscription,SubscriptionAdmin)
 admin.site.register(Plan)
+admin.site.register(UserPlan)
 admin.site.register(Property,PropertyAdmin)
 admin.site.register(FeaturedProperty,FeaturedPropertyAdmin)

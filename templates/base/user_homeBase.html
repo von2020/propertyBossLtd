@@ -36,6 +36,11 @@
 		<link href="{% static 'assets/css/plugins/slick.scss' %}" rel="stylesheet">
 		<link href="{% static 'assets/css/plugins/themify.css' %}" rel="stylesheet">
 		<link href="{% static 'assets/css/colors.css' %}" rel="stylesheet">
+		<link href="{% static 'assets/css/floating-wpp.css' %}" rel="stylesheet">
+		<link href="{% static 'assets/css/floating-wpp.min.css' %}" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
+  <link rel="stylesheet" href="../../../assets/vendors/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 		
     </head>
 	
@@ -67,7 +72,7 @@
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							<ul class="nav-menu">
 							
-								<li class="active"><a href="/home/user_home">Home<span class="submenu-indicator"></span></a>
+								<li class="active"><a href="/accounts/user_home">Home<span class="submenu-indicator"></span></a>
 									
 								</li>
 								
@@ -524,6 +529,7 @@
 			
 
 		</div>
+		
 		<!-- ============================================================== -->
 		<!-- End Wrapper -->
 		<!-- ============================================================== -->
@@ -532,6 +538,7 @@
 		<!-- All Jquery -->
 		<!-- ============================================================== -->
 		<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'assets/js/venom-button.min.js' %}"></script>
 		<script src="{% static 'assets/js/popper.min.js' %}"></script>
 		<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
 		<script src="{% static 'assets/js/ion.rangeSlider.min.js' %}"></script>
@@ -552,9 +559,34 @@
 		<script src="{% static 'assets/js/morris.min.js' %}"></script>
 		<script src="{% static 'assets/js/popper.min.js' %}"></script>
 		<script src="{% static 'assets/js/raphael.min.js' %}"></script>
-		
+		<script src="{% static 'assets/js/floating-wpp.min.js' %}"></script>
+		<script src="{% static 'assets/js/floating-wpp.js' %}"></script>
 
 		<script src="{% static 'assets/js/custom.js' %}"></script>
+
+		<script>
+			$(document).ready()
+
+			function arrange(){
+				var left_side = document.getElementsByClassName('side'); 
+			}
+		</script>
+
+		<script type="text/javascript">
+			var my_number = $('#my_number').val();
+			var my_role = $('#my_role').val();
+				$(function () {
+					console.log("number","+234" + my_number)
+					console.log("role", my_role)
+					$('#myDiv').floatingWhatsApp({
+		phone:"+234" + my_number,
+		popupMessage: 'Hello, this is the ' + my_role + ', how can we help you?',
+		showPopup: true
+				});
+	
+				
+	});
+			  </script>
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->

@@ -28,6 +28,7 @@ urlpatterns = [
     path('', views.home, name='home'), #view logged inhomepage
     path('login/', views.loginPage, name='login'),
     path('logout/', views.logoutUser, name='logout'),
+    path('<slug:slug>/', views.PropertyDetail.as_view(), name='property_detail'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

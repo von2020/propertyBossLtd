@@ -36,6 +36,9 @@
 		<link href="{% static 'assets/css/plugins/slick.scss' %}" rel="stylesheet">
 		<link href="{% static 'assets/css/plugins/themify.css' %}" rel="stylesheet">
 		<link href="{% static 'assets/css/colors.css' %}" rel="stylesheet">
+		<link href="{% static 'assets/css/floating-wpp.css' %}" rel="stylesheet">
+		<link href="{% static 'assets/css/floating-wpp.min.css' %}" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'assets/css/venom-button.min.css' %}">
 		
     </head>
 	
@@ -138,19 +141,19 @@
 									</ul>
 								</li> -->
 								
-								<li><a href="#">Contacts</a></li>
+								<li><a class="mod-close" href="#">Contacts</a></li>
 								
 							</ul>
 							
 							<ul class="nav-menu nav-menu-social align-to-right dhsbrd">
 								
 								<li>
-									<a href="#" data-toggle="modal" data-target="#login" class="text-blue">
+									<a href="#" class="mod-close" data-toggle="modal" data-target="#login" class="text-blue">
 										<i class="fas fa-user-circle mr-1"></i><span class="dn-lg">Login</span>
 									</a>
 								</li>
 								<li class="add-listing dark-bg">
-									<a href="#" data-toggle="modal" data-target="#signup" class="theme-cl">
+									<a href="#" class="mod-close" data-toggle="modal" data-target="#signup" class="theme-cl">
 										 <i class="fas fa-arrow-alt-circle-right mr-1"></i>Sign Up
 									</a>
 								</li>
@@ -309,7 +312,7 @@
 						<div class="hm_nav">
 							<h3 class="hm_nav_title">Log In</h3>
 							<span class="mod-close" data-dismiss="modal" aria-hidden="true"><i class="ti-close"></i></span>
-							<span class="hm_nav_clear">Clear</span>
+							<span class="mod-close">Clear</span>
 						</div>
 					</header>
 					<div class="modal-content" id="registermodal">
@@ -388,7 +391,7 @@
 						<div class="hm_nav">
 							<h3 class="hm_nav_title">Sign Up</h3>
 							<span class="mod-close" data-dismiss="modal" aria-hidden="true"><i class="ti-close"></i></span>
-							<span class="hm_nav_clear">Clear</span>
+							<span class="mod-close">Clear</span>
 						</div>
 					</header>
 					<div class="modal-content" id="sign-up">
@@ -467,6 +470,17 @@
 												</div>
 											</div>
 										</div>
+
+										<div class="col-lg-12 col-md-12">
+											<div class="form-group">
+												<label>WhatsApp Phone Number</label>
+												<div class="input-with-icon">
+													{{ form.whatsapp_phone_number }}
+													<!-- <input type="text" class="form-control" placeholder="Username"> -->
+													<i class="ti-user"></i>
+												</div>
+											</div>
+										</div>
 										
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
@@ -498,12 +512,12 @@
 								</form>
 							</div>
 							<div class="modal-divider"><span>Or Signup via</span></div>
-							<div class="social-login mb-3">
+							<!-- <div class="social-login mb-3">
 								<ul>
 									<li><a href="#" class="btn connect-fb"><i class="ti-facebook"></i>Facebook</a></li>
 									<li><a href="#" class="btn connect-twitter"><i class="ti-twitter"></i>Twitter</a></li>
 								</ul>
-							</div>
+							</div> -->
 							<div class="text-center">
 								<p class="mt-3"><i class="ti-user mr-1"></i>Already Have An Account? <a href="#" class="link">Go For LogIn</a></p>
 							</div>
@@ -523,8 +537,13 @@
 			
 			<a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
 			
+		
+		
+		
+
 
 		</div>
+		
 		<!-- ============================================================== -->
 		<!-- End Wrapper -->
 		<!-- ============================================================== -->
@@ -533,6 +552,7 @@
 		<!-- All Jquery -->
 		<!-- ============================================================== -->
 		<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+		<!-- <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script> -->
 		<script src="{% static 'assets/js/popper.min.js' %}"></script>
 		<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
 		<script src="{% static 'assets/js/ion.rangeSlider.min.js' %}"></script>
@@ -553,12 +573,50 @@
 		<script src="{% static 'assets/js/morris.min.js' %}"></script>
 		<script src="{% static 'assets/js/popper.min.js' %}"></script>
 		<script src="{% static 'assets/js/raphael.min.js' %}"></script>
-		
-
+		<script src="{% static 'assets/js/floating-wpp.min.js' %}"></script>
+		<script src="{% static 'assets/js/floating-wpp.js' %}"></script>
+		<script type="text/javascript" src="{% static 'assets/js/venom-button.min.js' %}"></script>
 		<script src="{% static 'assets/js/custom.js' %}"></script>
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->
+		<script>
+			$(document).ready()
 
+			function arrange(){
+				var left_side = document.getElementsByClassName('side'); 
+			}
+		</script>
+		<script type="text/javascript">
+		var my_number = $('#my_number').val();
+		var my_role = $('#my_role').val();
+			$(function () {
+				console.log("number","+234" + my_number)
+				console.log("role", my_role)
+				$('#myDiv').floatingWhatsApp({
+    phone:"+234" + my_number,
+    popupMessage: 'Hello, this is the ' + my_role + ', how can we help you?',
+    showPopup: true
+			});
+
+			
+});
+		  </script>
+		<!-- <script type="text/javascript">
+			$('#myButton').venomButton({
+		  
+			phone:'+2349066672305',
+		  
+			chatMessage:'Chat Window Title',
+		  
+			message:"Hi There",
+		  
+			nameClient:"jQuery Script",
+		  
+			showPopup:true
+		  
+		  });
+		  
+		  </script> -->
 	</body>
 </html>

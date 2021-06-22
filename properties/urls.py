@@ -9,6 +9,8 @@ urlpatterns = [
 
     path('add_property/', views.add_property, name='add_property'),
     path('my_properties/', views.my_properties, name='my_properties'),
+    path('<slug:slug>/', views.PropertyDetail_two.as_view(), name='property_detail_two'),
+    
     
 
     ]

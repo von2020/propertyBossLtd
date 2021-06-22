@@ -10,7 +10,8 @@ urlpatterns = [
 
     path('user_home/', views.user_home, name='user_home'),
     path('user_dashboard/', views.user_dashboard, name='user_dashboard'),
-    path('user_profile/', views.user_profile, name='user_profile'),
+    path('view_profile/', views.view_profile, name='view_profile'),
+    path('user_profile/<int:id>/', views.user_profile, name='user_profile'),
     path('subscription/', views.subscription_package, name='subscription_package'),
     
 

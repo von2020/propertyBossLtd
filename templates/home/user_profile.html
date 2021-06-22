@@ -13,7 +13,116 @@
                         <!-- Basic Information -->
                         <div class="frm_submit_block">	
                             <h4>My Account</h4>
-                            <div class="frm_submit_wrap">
+                            <div class="modal-content" id="sign-up">
+                                <div class="modal-body">
+                                    <div class="login-form">
+                                        <form  method="POST" enctype="multipart/form-data" action="">
+                                            {% csrf_token %}
+        
+                                            {% if form.errors %}
+                                    {% for field in form %}
+                                {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                            {% endfor %}
+                                {% endfor %}
+                            {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                        {% endfor %}
+                        {% endif %}
+                                            <div class="row">
+                                                
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>First Name</label>
+                                                        <div class="input-with-icon">
+                                                            {{ form.firstname}}
+                                                            <!-- <input type="text" class="form-control" placeholder="Full Name"> -->
+                                                            <i class="ti-user"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Last Name</label>
+                                                        <div class="input-with-icon">
+                                                            {{ form.lastname}}
+                                                            <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                                                            <i class="ti-email"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>email</label>
+                                                        <div class="input-with-icon">
+                                                            {{ form.email}}
+                                                            <!-- <input type="text" class="form-control" placeholder="Username"> -->
+                                                            <i class="ti-user"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Role</label>
+                                                        <div class="input-with-icon">
+                                                            {{ form.role}}
+                                                            <!-- <input type="text" class="form-control" placeholder="Username"> -->
+                                                            <i class="ti-user"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Phone Number</label>
+                                                        <div class="input-with-icon">
+                                                            {{ form.phone_number}}
+                                                            <!-- <input type="text" class="form-control" placeholder="Username"> -->
+                                                            <i class="ti-user"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Profile Picture</label>
+                                                        <div class="input-with-icon">
+                                                            {{ form.profile_pic}}
+                                                            <!-- <input type="password" class="form-control" placeholder="*******"> -->
+                                                            <i class="ti-unlock"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>ID Card</label>
+                                                        <div class="input-with-icon">
+                                                            {{ form.id_card}}
+                                                            <!-- <input type="password" class="form-control" placeholder="*******"> -->
+                                                            <i class="ti-unlock"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-md full-width pop-login bg-2">Update Profile</button>
+                                            </div>
+                                        
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <!-- <div class="frm_submit_wrap">
                                 <div class="form-row">
                                 
                                     <div class="form-group col-md-6">
@@ -44,7 +153,7 @@
                                     
                                     
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         
                         <!-- <div class="frm_submit_block">	
