@@ -140,5 +140,7 @@ MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+PAYSTACK_SECRET_KEY = os.environ['PAYSTACK_KEY']
+
 # Activate django-heroku
 django_heroku.settings(locals())

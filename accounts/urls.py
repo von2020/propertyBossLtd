@@ -13,6 +13,8 @@ urlpatterns = [
     path('view_profile/', views.view_profile, name='view_profile'),
     path('user_profile/<int:id>/', views.user_profile, name='user_profile'),
     path('subscription/', views.subscription_package, name='subscription_package'),
-    
+    path('subscribe/', views.subscribe, name='subscribe'),
+    path('subscribed/', views.subscribed, name='subscribed'),
+    path('payment/', views.call_back_url, name='payment'),
 
     ]

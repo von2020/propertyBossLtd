@@ -11,6 +11,9 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 from hitcount.views import HitCountDetailView
+from datetime import datetime, timedelta, timezone, tzinfo, date
+
+today = date.today()
 
 
 # Create your views here.
@@ -27,7 +30,7 @@ def home(request):
             form.save()
             obj = form.save()
             get_plan = Plan.objects.get(plan_type='Free')
-            UserPlan.objects.create(user=obj, plan=get_plan)
+            instance = UserPlan.objects.create(user=obj, plan=get_plan)
             messages.success(request, "Registration Successful." )
             return redirect('/')
         else:

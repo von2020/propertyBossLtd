@@ -47,9 +47,11 @@
                                         <label>Phone</label>
                                         <input type="text" class="form-control" value="{{request.user.phone_number}}" readonly>
                                     </div>
-                                    
-                                    
-                                    
+                                    {% if sub.user_plan.plan != null %}
+                                    <h6 class="alert btn-success">You are on the {{ sub.user_plan.plan }} plan</h6>
+                                    {% else %}
+                                    <h6 class="alert btn-success">You are not on any subscription  plan</h6>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

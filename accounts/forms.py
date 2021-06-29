@@ -1,5 +1,5 @@
 from django import forms
-from accounts.models import UserRegistration, Subscription
+from accounts.models import UserRegistration, Subscription, UpdateProfile
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm, PasswordResetForm
@@ -19,8 +19,7 @@ class UserRegistrationForm(UserCreationForm):
     role      = forms.CharField(required=True, widget=forms.Select(choices=ROLE_CHOICES))
     phone_number = forms.CharField(required=True, widget=forms.NumberInput(attrs={'class':'form-control', 'placeholder': 'Phone Number'}))
     whatsapp_phone_number = forms.CharField(required=True, widget=forms.NumberInput(attrs={'class':'form-control', 'placeholder': 'WhatsApp Phone Number'}))
-    profile_pic  = forms.ImageField(required=False)
-    id_card      = forms.FileField(required=False, widget=forms.FileInput(attrs={'class':'form-control', 'placeholder': 'id card','help_text':'max. 42 megabytes'}))
+    
 
     class Meta:
         model = User
@@ -109,8 +108,7 @@ class EditUserRegistrationForm(UserCreationForm):
     email        = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder': 'Email'}))
     role         = forms.CharField(required=False, widget=forms.Select(choices=ROLE_CHOICES))
     phone_number = forms.CharField(required=True, widget=forms.NumberInput(attrs={'class':'form-control', 'placeholder': 'Phone Number'}))
-    profile_pic  = forms.FileField(required=False, widget=forms.FileInput(attrs={'class':'form-control', 'placeholder': 'Profile Picture','help_text':'max. 42 megabytes'}))
-    id_card      = forms.FileField(required=False, widget=forms.FileInput(attrs={'class':'form-control', 'placeholder': 'id card','help_text':'max. 42 megabytes'}))
+    
     
 
     class Meta:
@@ -120,12 +118,10 @@ class EditUserRegistrationForm(UserCreationForm):
             'lastname',
             'email',
             'role',
-            'phone_number',
-            'profile_pic',
-            'id_card',
+            'phone_number'
+            
             
             )
-
 
     def save(self, commit=True):
         user = super(EditUserRegistrationForm, self).save(commit=False)
@@ -134,16 +130,21 @@ class EditUserRegistrationForm(UserCreationForm):
         user.email = self.cleaned_data['email']
         user.role = self.cleaned_data['role']
         user.phone_number = self.cleaned_data['phone_number']
+
+
+class EditProfileForm(UserCreationForm):
+    
+    
+
+    class Meta:
+        model = UpdateProfile
+        fields = (
+            'profile_pic',
+            'id_card'  
+            )
+
+    def save(self, commit=True):
+        user = super(EditProfileForm, self).save(commit=False)
         user.profile_pic = self.cleaned_data['profile_pic']
-        user.id_card = self.cleaned_data['id_card']       
-        # password1 = self.cleaned_data.get("password1")
-        # password2 = self.cleaned_data.get("password2")
-
-        
-
-        def save(self, commit=True):
-            user = super().save(commit=False)
-            # user.set_password(self.cleaned_data["password1"])
-        if commit:
-            user.save()
-        return user
+        user.id_card = self.cleaned_data['id_card']
+    

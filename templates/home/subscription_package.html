@@ -34,31 +34,62 @@
         
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
-            <form method="POST" action="">
+            
                 <div class="row">
-                    {% for plan in subscription_plan %}
+											
                     <!-- Single Package -->
                     <div class="col-lg-4 col-md-4 c-l-sm-12">
                         <div class="package-box">
-                            <span class="theme-cl">{{plan.name}}</span>
-                            <h4 class="packages-features-title">NGN {{plan.amount}} / {{plan.duration}}</h4>
+                            <span class="theme-cl">Gold Package</span>
+                            <h4 class="packages-features-title">USD 49 / 1 year</h4>
                             <ul class="packages-lists-list">
-                                <li>{{plan.listings}} listings</li>
-                                <li>{{plan.featured}} Featured</li>
-                                <li>{{plan.images}} Images</li>
+                                <li>Unlimited listings</li>
+                                <li>100 Featured</li>
+                                <li>Unlimited Images</li>
                                 <li>Help & Support</li>
                             </ul>
                             <div class="buypackage">
-                                <div class="switchbtn paying">
-                                    <input id="gold" class="switchbtn-checkbox" type="radio" value="2" checked name="package7">
-                                    <label class="switchbtn-label" for="gold"></label>
-                                </div>
-                                <span>Switch to this package</span>
+                                
+                                <a href="{% url 'subscribe' %}?sub_plan=Gold" class="btn db-button-color-square btn-danger">Subscribe</a>
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
                     
+                    <!-- Single Package -->
+                    <div class="col-lg-4 col-md-4 c-l-sm-12">
+                        <div class="package-box">
+                            <span class="theme-cl">Premium Package</span>
+                            <h4 class="packages-features-title">USD 39 / 1 year</h4>
+                            <ul class="packages-lists-list">
+                                <li>20 listings</li>
+                                <li>5 Featured</li>
+                                <li>5 Images/ per list</li>
+                                <li>Help & Support</li>
+                            </ul>
+                            <div class="buypackage">
+                                
+                                <a href="{% url 'subscribe' %}?sub_plan=Premium" class="btn db-button-color-square btn-primary">Subscribe</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Single Package -->
+                    <div class="col-lg-4 col-md-4 c-l-sm-12">
+                        <div class="package-box">
+                            <span class="theme-cl">Standard Package</span>
+                            <h4 class="packages-features-title">USD 10 / 1 year</h4>
+                            <ul class="packages-lists-list">
+                                <li>10 listings</li>
+                                <li>2 Featured</li>
+                                <li>2 Images</li>
+                                <li>Help & Support</li>
+                            </ul>
+                            <div class="buypackage">
+                                
+                                <a href="{% url 'subscribe' %}?sub_plan=Standard" class="btn db-button-color-square btn-success">Subscribe</a>
+                            </div>
+                        </div>
+                    </div>
                 
                 </div>
                 
@@ -72,7 +103,7 @@
                         <!-- <a href="#" class="pay-btn wire-trans">Wire Transfer</a> -->
                     </div>
                 </div>
-            </form>
+            
             </div>
         </div>
         <!-- Row -->

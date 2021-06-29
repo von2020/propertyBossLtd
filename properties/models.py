@@ -8,7 +8,7 @@ class Property(models.Model):
     status         = models.CharField(max_length=20, verbose_name='status')
     types          = models.CharField(max_length=20, verbose_name='types')
     price          = models.IntegerField(default=0)
-    slug           = models.SlugField(max_length=200, default='property')
+    slug           = models.SlugField(max_length=200)
     area           = models.CharField(max_length=20, verbose_name='area')
     bedrooms       = models.CharField(max_length=20, verbose_name='bedrooms')
     bathrooms      = models.CharField(max_length=20, verbose_name='bathrooms')
@@ -128,3 +128,5 @@ class FeaturedProperty(models.Model):
         except:
             url = ''
         return url
+
+
