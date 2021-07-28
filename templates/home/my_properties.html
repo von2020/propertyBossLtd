@@ -6,55 +6,80 @@
 
             
             <div class="col-lg-9 col-md-8 col-sm-12">
-                <div class="dashboard-body">
+                <div class="dashboard-body w-100 p-3">
 
                     
                     <!-- Bookmark Property -->
                     <div class="frm_submit_block mb-3">	
-                        <h4>My Property</h4>
+                        <h4></h4>
                     </div>
                         
                     <div class="row">
 
                         <!-- Single Property -->
-                        {% for props in featured_props %}
-                        <div class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="dashboard_property_list">
-                                <div class="dashboard_property_list_thumb">
-                                    <img src="{{ props.imageURL_one }}" class="img-fluid" alt="" />
-                                    <!-- <span class="dashboard_pr_status published">Published</span> -->
-                                </div>
-                                <div class="dashboard_property_list_content">
-                                    <h4>{{ props.title}}</h4>
-                                    <span><i class="ti-location-pin"></i>{{ props.area}}</span>
-                                </div>
+                        <table class="property-table-wrap responsive-table bkmark">
+
+                            <tbody>
+                                <tr>
+                                    <th><i class="fa fa-file-text"></i> My Properties</th>
+                                    <th></th>
+                                </tr>
+                                {% for prop in props %}
+                                <!-- Item #1 -->
+                                <tr>
+                                    <td class="dashboard_propert_wrapper">
+                                        <img style="width:20%; height:20%;" src="{{ prop.imageURL_one }}" alt="">
+                                        <div class="title">
+                                            <h4><a href="#">{{ prop.title}}</a></h4>
+                                            <span>{{ prop.area}}</span>
+                                            <span class="table-property-price">{{ prop.price}}</span>
+                                        </div>
+                                    </td>
+                                    <td class="action">
+                                        <a href="{% url 'properties:update_property' prop.id %}" style="width:10%; color:white;" class="alert btn-success">Edit</a>
+                                        <a href="/properties/delete/{{prop.id}}" style="width:10%; color:white;" class="alert btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
                                 
-                            </div>
-                        </div>
-                        {% endfor %}
+
+                            </tbody>
+                        </table>
+
                         
-                        <!-- Single Property -->
-                        {% for prop in props %}
-                        <div class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="dashboard_property_list">
-                                <div class="dashboard_property_list_thumb">
-                                    <img src="{{ prop.imageURL_one }}" class="img-fluid" alt="" />
-                                    <!-- <span class="dashboard_pr_status published">Published</span> -->
-                                </div>
-                                <div class="dashboard_property_list_content">
-                                    <h4>{{ prop.title}}</h4>
-                                    <span><i class="ti-location-pin"></i>{{ prop.area}}</span>
-                                </div>
-                                <!-- <div class="dashboard_property_list_footer">
-                                    <a href="#" class="text-featured" data-toggle="tooltip" title="Make Featured"><i class="ti-star"></i></a>
-                                    <a href="#" data-toggle="tooltip" title="Edit Property"><i class="ti-pencil"></i></a>
-                                    <a href="#" data-toggle="tooltip" title="302 Views"><i class="ti-eye"></i></a>
-                                    <a href="#" data-toggle="tooltip" title="Delete Property"><i class="ti-close"></i></a>
-                                    <a href="#" data-toggle="tooltip" title="Pause"><i class="ti-control-pause"></i></a>
-                                </div> -->
-                            </div>
-                        </div>
-                        {% endfor %}
+                        <!-- <div>
+                            <table id="dataTableExample" class="table" data-order=''>
+                                <thead>
+                    
+                                  <tr>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Area</th>
+                                    <th>Price</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                    
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    {% for prop in props %}
+                                  <tr>
+                                    <td style="width:20%; height:20%;"><img src="{{ prop.imageURL_one }}" class="img-fluid" alt="" /></td>
+                                    <td>{{ prop.title}}</td>
+                                    <td>{{ prop.area}}</td>
+                                    <td>{{ prop.price}}</td>
+                                    <td><a href="{% url 'properties:update_property' prop.id %}" class="alert btn-success">Edit</a></td>
+                                    <td><a href="/properties/delete/{{prop.id}}" class="alert btn-danger">Delete</a></td>
+                                    
+                                    
+                                    
+                                  </tr>
+                                  {% endfor %}
+                                </tbody>  
+                              </table>
+                        </div> -->
+                        
+                        
                                            
                     </div>
                     <!-- row -->

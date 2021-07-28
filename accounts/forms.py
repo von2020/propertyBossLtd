@@ -133,7 +133,8 @@ class EditUserRegistrationForm(UserCreationForm):
 
 
 class EditProfileForm(UserCreationForm):
-    
+    profile_pic     = forms.ImageField(required=False)
+    id_card         = forms.FileField(required=False)
     
 
     class Meta:

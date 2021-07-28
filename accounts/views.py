@@ -41,21 +41,24 @@ def user_dashboard(request):
 def user_profile(request, id):
     if request.method == 'POST':
         u_form = EditUserRegistrationForm(request.POST or None, instance=request.user)
-        p_form = EditProfileForm(request.POST, request.FILES or None, instance=request.user.profile)
+        p_form = EditProfileForm(request.POST, request.FILES, instance=request.user.profile)
         print('it is POST')
-        if u_form.is_valid() and p_form.is_valid():
-            print('u_form', u_form.cleaned_data)
-            print('p_form', p_form.cleaned_data)
-            u_form.save()
-            p_form.save()
-            messages.success(request, "Profile Update Successful.")
-            return redirect('/accounts/user_profile')
+        if not u_form.has_changed() and not p_form.has_changed():
+            if u_form.is_valid() and p_form.is_valid():
+                print('u_form', u_form.cleaned_data)
+                print('p_form', p_form.cleaned_data)
+                u_form.save()
+                p_form.save()
+                messages.success(request, "Profile Update Successful.")
+                return redirect('/accounts/user_profile')
+            else:
+                print('Not VALID')
+                print('u_form', u_form.cleaned_data)
+                print('p_form', p_form.cleaned_data)
+                messages.error(request, "Profile Not Updated Successful.")
+                return redirect('/accounts/user_profile')
         else:
-            print('Not VALID')
-            print('u_form', u_form.cleaned_data)
-            print('p_form', p_form.cleaned_data)
-            messages.error(request, "Profile Not Updated Successful.")
-            return redirect('/accounts/user_profile')
+            print("nothing's changed")
 
     else:
         print('GET')

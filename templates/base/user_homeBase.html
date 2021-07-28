@@ -1,5 +1,7 @@
 {% load static %}
 
+{% load cloudinary %}
+
 {% include 'home/message.html' %}
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +38,8 @@
 		<link href="{% static 'assets/css/plugins/slick.scss' %}" rel="stylesheet">
 		<link href="{% static 'assets/css/plugins/themify.css' %}" rel="stylesheet">
 		<link href="{% static 'assets/css/colors.css' %}" rel="stylesheet">
+		<link href="{% static 'assets/datatables.net/jquery.dataTables.css' %}" rel="stylesheet">
+		<link href="{% static 'assets/datatables.net/jquery.dataTables.min.css' %}" rel="stylesheet">
 		<link href="{% static 'assets/css/floating-wpp.css' %}" rel="stylesheet">
 		<link href="{% static 'assets/css/floating-wpp.min.css' %}" rel="stylesheet">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
@@ -49,7 +53,7 @@
 		 <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
-       <div class="preloader"></div>
+       <!-- <div class="preloader"></div> -->
 		
         <!-- ============================================================== -->
         <!-- Main wrapper - style you can find in pages.scss -->
@@ -104,7 +108,7 @@
 									</ul>
 								</li> -->
 								
-								<li><a href="#">User Admin<span class="submenu-indicator"></span></a>
+								<li><a href="/accounts/user_dashboard">User Admin<span class="submenu-indicator"></span></a>
 									<ul class="nav-dropdown nav-submenu">
 										<li class=""><a href="/accounts/user_dashboard">User Dashboard<span class="submenu-indicator"></span></a>
 											<!-- <ul class="nav-dropdown nav-submenu">
@@ -561,7 +565,8 @@
 		<script src="{% static 'assets/js/raphael.min.js' %}"></script>
 		<script src="{% static 'assets/js/floating-wpp.min.js' %}"></script>
 		<script src="{% static 'assets/js/floating-wpp.js' %}"></script>
-
+		<script src="{% static 'assets/datatables.net/jquery.dataTables.js' %}"></script>
+		<script src="{% static 'assets/datatables.net/jquery.dataTables.min.js' %}"></script>
 		<script src="{% static 'assets/js/custom.js' %}"></script>
 
 		<script>

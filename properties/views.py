@@ -11,6 +11,12 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 from hitcount.views import HitCountDetailView
+from django.views.generic import View
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode 
+from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
+from .utils import generate_token 
+from django.core.mail import EmailMessage
 from datetime import datetime, timedelta, timezone, tzinfo, date
 
 today = date.today()
@@ -29,6 +35,26 @@ def home(request):
             print(form.cleaned_data)
             form.save()
             obj = form.save()
+
+            email = obj.email
+            current_site=get_current_site(request)
+            email_subject='Activate Your Account'
+            message=render_to_string('home/activate.html',
+            {
+                'user':form,
+                'domain':current_site.domain,
+                'uid':urlsafe_base64_encode(force_bytes(obj.id)),
+                'token':generate_token.make_token(obj)
+            }) 
+            email_message = EmailMessage(
+                email_subject,
+                message,
+                settings.EMAIL_HOST_USER,
+                [email]
+            )
+
+            email_message.send()
+
             get_plan = Plan.objects.get(plan_type='Free')
             instance = UserPlan.objects.create(user=obj, plan=get_plan)
             messages.success(request, "Registration Successful." )
@@ -41,6 +67,24 @@ def home(request):
     else: 
         form = UserRegistrationForm()   
     return render(request, 'home/index.html',{'property_list': property_list,'featuredProperty_list': featuredProperty_list,'properties': properties,'featuredProperties': featuredProperties,'form':form})
+
+
+
+class ActivateAccountView(View):
+    def get(self, request, uidb64, token):
+        try:
+            uid=force_text(urlsafe_base64_decode(uidb64))
+            user=UserRegistration.objects.get(pk=uid)
+        except Exception as identifier:    
+            user=None
+
+        if user is not None and generate_token.check_token(user, token):
+            user.is_active=True
+            user.save( )
+            messages.success(request, "Account Activated Successfully." )
+            return redirect('/')
+        else:
+            return render(request, 'home/activate_failed.html', status=401)
 
 
 class PropertyDetail(HitCountDetailView):
@@ -143,12 +187,13 @@ def add_property(request):
         if form.is_valid():
             print(form.cleaned_data)
             prop = form.save(commit=False)
-            prop.customer_id = int(request.user.id)
+            prop.customer_id = int(request.user.id)        
             print(request.user.id)
             print(type(request.user.id))
             prop.save()
+            print('prop', prop)
             messages.success(request, "Property Added Successfully" )
-            return redirect('/accounts/user_dashboard',{'form':form})
+            return redirect('/accounts/user_dashboard',{'form':form, 'prop':prop})
         else:
             print(form.cleaned_data)
             messages.error(request, "Property Not Added Successfully" )
@@ -169,6 +214,40 @@ def my_properties(request):
     # return render(request, 'home/user_dashboard.html', {'properties':properties, 'customer': customer})
 
 
+def update_property(request, pk):
+    
+    user_plan = UserPlan.objects.get(user=request.user)
+    subscriptions = Subscription.objects.filter(user_plan=user_plan).exists()
+    print(subscriptions)
+    print(user_plan)
+    users = UserRegistration.objects.all()
+    
+    try:
+              
+        if subscriptions == False:
+            print('Hello')
+            return redirect('/properties/my_properties')
+        else:
+            subscription = Subscription.objects.filter(user_plan=user_plan).last()
+            print('see', subscription)
+            properties = Property.objects.get(id=pk)
+            if request.method == 'POST':
+                form = PropertyForm(request.POST, request.FILES or None, instance=properties)
+                if form.is_valid():
+                    form.save()
+                    return redirect('/properties/my_properties')
+            form = PropertyForm(request.POST or None, instance=properties)
+            context ={'form': form,'users': users, 'sub':subscription }
+            return render(request, 'home/updateProperty.html', context)
+    except:
+        messages.error(request, "Network Error" )
+        return render(request, 'home/my_properties.html', context)
+
+
+def delete(request, id):
+    properties = Property.objects.filter(id=id)
+    properties.delete()
+    return redirect('/properties/my_properties')
 
 
 

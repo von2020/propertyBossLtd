@@ -1,5 +1,7 @@
 {% load static %}
 
+{% load cloudinary %}
+
 {% include 'home/message.html' %}
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +38,9 @@
 		<link href="{% static 'assets/css/plugins/slick.scss' %}" rel="stylesheet">
 		<link href="{% static 'assets/css/plugins/themify.css' %}" rel="stylesheet">
 		<link href="{% static 'assets/css/colors.css' %}" rel="stylesheet">
+		<link href="{% static 'assets/datatables.net/jquery.dataTables.css' %}" rel="stylesheet">
+		<link href="{% static 'assets/datatables.net/jquery.dataTables.min.css' %}" rel="stylesheet">
+		
 		
     </head>
 	
@@ -43,7 +48,7 @@
         <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
-       <div class="preloader"></div>
+       <!-- <div class="preloader"></div> -->
 		
         <!-- ============================================================== -->
         <!-- Main wrapper - style you can find in pages.scss -->
@@ -368,6 +373,8 @@
 		<script src="{% static 'assets/js/dropzone.js' %}"></script>
 		<script src="{% static 'assets/js/map_infobox.js' %}"></script>
 		<script src="{% static 'assets/js/map.js' %}"></script>
+		<script src="{% static 'assets/datatables.net/jquery.dataTables.js' %}"></script>
+		<script src="{% static 'assets/datatables.net/jquery.dataTables.min.js' %}"></script>
 		<script src="{% static 'assets/js/markerclusterer.js' %}"></script>
 		<script src="{% static 'assets/js/moment.min.js' %}"></script>
 		<script src="{% static 'assets/js/morris.js' %}"></script>
@@ -378,6 +385,18 @@
 
 		<script src="{% static 'assets/js/custom.js' %}"></script>
 			
+		<script>
+			function result()
+			{
+			alert('hey you');
+			var property = document.getElementById('propid').value
+			var slug = document.getElementById('id_slug').value="property" + property;
+			
+			console.log('propid', propid);
+			console.log('slug', slug)
+			}
+		</script>
+		
 		<!-- ============================================================== -->
 		<!-- This page plugins -->
 		<!-- ============================================================== -->

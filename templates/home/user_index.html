@@ -24,7 +24,7 @@
 			
 					<div class="listing_thumb_wrapper">
 						<div class="property_gallery_slide-thumb">
-							<a href="{% url 'property_detail' featured_property.slug  %}"><img src="{{ featured_property.imageURL_one }}" class="img-fluid mx-auto" alt=""></a>
+							<a href="{% url 'properties:property_detail' featured_property.slug  %}"><img src="{{ featured_property.imageURL_one }}" class="img-fluid mx-auto" alt=""></a>
 						</div>
 						<div class="uilist_view_thumb">
 							<a href="#" class="uilist-btn text-warning" data-toggle="tooltip" data-original-title="304 Views"><i class="ti-eye"></i></a>
@@ -291,9 +291,9 @@
 				<div class="list-slide-box">
 					<div class="modern-list">
 						<div class="grid-category-thumb">
-							<a href="{% url 'property_detail_two' property.slug  %}" class="overlay-cate"><img src="{{ property.imageURL_one }}" class="img-responsive" alt=""></a>
+							<a href="{% url 'properties:property_detail_two' property.slug  %}" class="overlay-cate"><img src="{{ property.imageURL_one }}" class="img-responsive" alt=""></a>
 							<div class="property_meta simple">
-								<a href="{% url 'property_detail_two' property.slug  %}" class="cate-trix theme-cl">For {{ property.status }}</a>
+								<a href="{% url 'properties:property_detail_two' property.slug  %}" class="cate-trix theme-cl">For {{ property.status }}</a>
 							</div>
 						</div>
 						<div class="modern-list-content">
@@ -301,7 +301,7 @@
 								<img src="{% static 'assets/img/avatar.png' %}" class="author-avater-img" alt="">
 							</div>
 							<div class="listing-content-wrap smalls">
-								<h4 class="lst-title"><a href="{% url 'property_detail_two' property.slug  %}">Hizrat Villa</a></h4> 
+								<h4 class="lst-title"><a href="{% url 'properties:property_detail_two' property.slug  %}">Hizrat Villa</a></h4> 
 								<p>{{ property.area }}</p>
 							</div>
 							<div class="listing-footer-wrap property-lists mt-2">

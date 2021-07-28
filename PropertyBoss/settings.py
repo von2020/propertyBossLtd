@@ -14,6 +14,9 @@ import os
 import dotenv
 import django_heroku
 from pathlib import Path
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,6 +52,7 @@ INSTALLED_APPS = [
     'accounts',
     'properties',
     'hitcount',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -140,7 +144,24 @@ MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-PAYSTACK_SECRET_KEY = os.environ['PAYSTACK_KEY']
+PAYSTACK_SECRET_KEY  = os.environ['PAYSTACK_KEY']
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = 'True'
+EMAIL_HOST_USER = 'orumwensey@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ['password_key']
+EMAIL_USE_TLS = True
+
+cloudinary.config( 
+  cloud_name = "dxzrwvflo", 
+  api_key = "248583444414373", 
+  api_secret = "C1i08PVkjl0ht6vRxGXvq5GeUoc",
+  
+)
+
+
 
 # Activate django-heroku
 django_heroku.settings(locals())

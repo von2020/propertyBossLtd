@@ -1,0 +1,329 @@
+
+{% extends 'base/user_dashboardBase.html' %}
+{% load static %}
+
+{% block content %}
+
+            
+            <div class="col-lg-9 col-md-8 col-sm-12">
+                <div class="dashboard-body">
+                
+                    <div class="dashboard-wraper">
+                    
+                        <!-- Basic Information -->
+                        <div class="frm_submit_block">	
+                            <h4>Edit Property</h4>
+                            <div class="modal-content" id="sign-up">
+                                <div class="modal-body">
+                                    <div class="login-form">
+                                        <form  method="POST" enctype="multipart/form-data" action="">
+                                            {% csrf_token %}
+        
+                                            {% if form.errors %}
+                                    {% for field in form %}
+                                {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                            {% endfor %}
+                                {% endfor %}
+                            {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                        {% endfor %}
+                        {% endif %}
+                                            <div class="row">
+                                                
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Title</label>
+                                                        <div class="input-with-icon">
+                                                            {{ form.title}}
+                                                            <!-- <input type="text" class="form-control" placeholder="Full Name"> -->
+                                                            <i class="ti-user"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Status</label>
+                                                        <div class="input-with-icon">
+                                                            {{ form.status}}
+                                                            <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                                                            <i class="ti-email"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Types</label>
+                                                        <div class="input-with-icon">
+                                                            {{ form.types}}
+                                                            <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                                                            <i class="ti-email"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% if sub.user_plan.plan == Free %}
+                                                <h6 class="alert btn-success">You are on the {{ sub.user_plan.plan }} plan</h6>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Image One</label>
+                                                        <div class="input-with-icon">
+                                                            
+                                                            {{ form.image_one}}
+                                                            <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                                                            <i class="ti-email"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% elif sub.user_plan.plan == Standard %}
+                                                <h6 class="alert btn-success">You are on the {{ sub.user_plan.plan }} plan</h6>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Image One</label>
+                                                        <div class="input-with-icon">
+                                                            
+                                                            {{ form.image_one}}
+                                                            <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                                                            <i class="ti-email"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% elif sub.user_plan.plan == Premium %}
+                                                <h6 class="alert btn-success">You are on the {{ sub.user_plan.plan }} plan</h6>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Image One</label>
+                                                        <div class="input-with-icon">
+                                                            
+                                                            {{ form.image_one}}
+                                                            <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                                                            <i class="ti-email"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% else %}
+                                                <h6 class="alert btn-success">You are on the {{ sub.user_plan.plan }} plan</h6>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Image One</label>
+                                                        <div class="input-with-icon">
+                                                            
+                                                            {{ form.image_one}}
+                                                            <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                                                            <i class="ti-email"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Image Two</label>
+                                                        <div class="input-with-icon">
+                                                            
+                                                            {{ form.image_two}}
+                                                            <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                                                            <i class="ti-email"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Image Three</label>
+                                                        <div class="input-with-icon">
+                                                            
+                                                            {{ form.image_three}}
+                                                            <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                                                            <i class="ti-email"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Image Four</label>
+                                                        <div class="input-with-icon">
+                                                            
+                                                            {{ form.image_four}}
+                                                            <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                                                            <i class="ti-email"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Image Five</label>
+                                                        <div class="input-with-icon">
+                                                            
+                                                            {{ form.image_five}}
+                                                            <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                                                            <i class="ti-email"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                                
+                                                
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Price</label>
+                                                        <div class="input-with-icon">
+                                                            {{ form.price}}
+                                                            <!-- <input type="text" class="form-control" placeholder="Username"> -->
+                                                            <i class="ti-user"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Area</label>
+                                                        <div class="input-with-icon">
+                                                            {{form.area}}
+                                                            <!-- <input type="text" class="form-control" placeholder="Username"> -->
+                                                            <i class="ti-user"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Bedrooms</label>
+                                                        <div class="input-with-icon">
+                                                            {{form.bedrooms}}
+                                                            <!-- <input type="text" class="form-control" placeholder="Username"> -->
+                                                            <i class="ti-user"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Bathrooms</label>
+                                                        <div class="input-with-icon">
+                                                            {{ form.bathrooms}}
+                                                            <!-- <input type="password" class="form-control" placeholder="*******"> -->
+                                                            <i class="ti-unlock"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>location</label>
+                                                        <div class="input-with-icon">
+                                                            {{form.location}}
+                                                            <!-- <input type="password" class="form-control" placeholder="*******"> -->
+                                                            <i class="ti-unlock"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>description</label>
+                                                        <div class="input-with-icon">
+                                                            {{form.description}}
+                                                            <!-- <input type="password" class="form-control" placeholder="*******"> -->
+                                                            <i class="ti-unlock"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-md full-width pop-login bg-2">Save</button>
+                                            </div>
+                                        
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <!-- <div class="frm_submit_wrap">
+                                <div class="form-row">
+                                
+                                    <div class="form-group col-md-6">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control" value="{{request.user.firstname}}" readonly>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" value="{{request.user.lastname}}" readonly>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" value="{{request.user.email}}" readonly>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label>Role</label>
+                                        <input type="text" class="form-control" value="{{request.user.role}}" readonly>
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label>Phone</label>
+                                        <input type="text" class="form-control" value="{{request.user.phone_number}}" readonly>
+                                    </div>
+                                    
+                                    
+                                    
+                                </div>
+                            </div> -->
+                        </div>
+                        
+                        <!-- <div class="frm_submit_block">	
+                            <h4>Social Accounts</h4>
+                            <div class="frm_submit_wrap">
+                                <div class="form-row">
+                                
+                                    <div class="form-group col-md-6">
+                                        <label>Facebook</label>
+                                        <input type="text" class="form-control" value="https://facebook.com/">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label>Twitter</label>
+                                        <input type="email" class="form-control" value="https://twitter.com/">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label>Google Plus</label>
+                                        <input type="text" class="form-control" value="https://googleplus.com">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label>LinkedIn</label>
+                                        <input type="text" class="form-control" value="https://linkedin.com/">
+                                    </div>
+                                    
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        <button class="btn btn-theme bg-2" type="submit">Save Changes</button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div> -->
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 mt-4">
+                            <footer class="text-center">
+                                <p class="mb-0">© 2020 PropertyBoss</a> All Rights Reserved</p>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- row -->
+                
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

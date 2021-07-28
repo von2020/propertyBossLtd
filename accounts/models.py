@@ -12,7 +12,6 @@ from datetime import datetime, timedelta, timezone, tzinfo, date
 class UpdateProfile(models.Model):
     profile_pic       = models.ImageField(upload_to='profile_pics/', default='assets/img/avatar.png')
     id_card           = models.FileField(upload_to='documents/%Y/%m/%d', default='')
-    # user              = models.ForeignKey(UserRegistration, on_delete= models.CASCADE, blank=True, null=True)
     created_on        = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'created_on'
@@ -60,13 +59,14 @@ class UserRegistration(AbstractBaseUser):
     whatsapp_phone_number = models.IntegerField(default=0)
     profile           = models.ForeignKey(UpdateProfile, on_delete= models.CASCADE, blank=True, null=True)
     created_on        = models.DateTimeField(auto_now_add=True)
-    is_active         = models.BooleanField(default=True)
+    is_active         = models.BooleanField(default=False)
     is_admin          = models.BooleanField(default=False)
     
     objects = UserRegistrationManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['firstname', 'lastname', 'role' ]
+    
 
     def __str__(self): 
         return '{} {}'.format(self.firstname, self.lastname)
@@ -86,6 +86,8 @@ class UserRegistration(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
+
+    
 
 
 

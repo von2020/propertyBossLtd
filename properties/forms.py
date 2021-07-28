@@ -67,6 +67,8 @@ class PropertyForm(forms.ModelForm):
             
             )
 
+    
+
     # def __init__(self, *args, **kwargs):
     #     self.request = kwargs.pop("request")
     #     super(PropertyForm, self).__init__(*args, **kwargs)

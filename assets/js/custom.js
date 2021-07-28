@@ -4,7 +4,7 @@ $(function() {
 	//Loader	
 	$(function preloaderLoad() {
         if($('.preloader').length){
-            $('.preloader').delay(200).fadeOut(300);
+            $('.preloader').delay(100).fadeOut(200);
         }
         $(".preloader_disabler").on('click', function() {
             $("#preloader").hide();

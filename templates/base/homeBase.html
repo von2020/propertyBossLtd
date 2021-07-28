@@ -1,5 +1,7 @@
 {% load static %}
 
+{% load cloudinary %}
+
 {% include 'home/message.html' %}
 <!DOCTYPE html>
 <html lang="en">
@@ -157,6 +159,12 @@
 										 <i class="fas fa-arrow-alt-circle-right mr-1"></i>Sign Up
 									</a>
 								</li>
+								<li>
+									<a href="/accounts/reset_password" class="text-blue">
+										<i class="fas fa-user-circle mr-1"></i><span class="dn-lg">Forgot Password</span>
+									</a>
+								</li>
+								
 							</ul>
 							
 						</div>
@@ -171,7 +179,7 @@
 			
 			
 			<!-- ============================ Hero Banner  Start================================== -->
-			<div class="image-cover hero_banner half_banner" style="background:#334aca url(assets/img/landing-bg.png) no-repeat;" data-overlay="1">
+			<div class="image-cover hero_banner half_banner" data-overlay="1">
 				<div class="container">
 	
 						<div class="row justify-content-center">
@@ -199,7 +207,7 @@
 											<div class="form-group">
 												<div class="input-with-icon">
 													<input type="text" class="form-control b-0" placeholder="Search project, locality, landmarks">
-													<img src="assets/img/pin.svg" alt="" />
+													<img src="{% static 'assets/img/pin.svg' %}" alt="" />
 												</div>
 											</div>
 										</div>
@@ -228,7 +236,7 @@
 							
 							<div class="col-lg-4 col-md-4">
 								<div class="footer_widget">
-									<div class="footlogo"><img src="assets/img/logo-light.png" class="img-fluid mb-3" alt="" /></div>
+									<div class="footlogo"><img src="{% static 'assets/img/logo-light.png' %}" class="img-fluid mb-3" alt="" /></div>
 									<p>2512, New Market Eliza Road, Sincher 80<br>Montreal Central Canada,<br>USA QHVK1254</p>
 									<ul class="footer-bottom-social">
 										<li><a href="#"><i class="ti-facebook"></i></a></li>
@@ -312,7 +320,7 @@
 						<div class="hm_nav">
 							<h3 class="hm_nav_title">Log In</h3>
 							<span class="mod-close" data-dismiss="modal" aria-hidden="true"><i class="ti-close"></i></span>
-							<span class="mod-close">Clear</span>
+							<span class="mod-close" data-dismiss="modal">Clear</span>
 						</div>
 					</header>
 					<div class="modal-content" id="registermodal">
@@ -357,31 +365,21 @@
 								
 								</form>
 							</div>
-							<div class="modal-divider"><span>Or login via</span></div>
-							<div class="social-login mb-3">
-								<ul>
-									<li><a href="#" class="btn connect-fb"><i class="ti-facebook"></i>Facebook</a></li>
-									<li><a href="#" class="btn connect-twitter"><i class="ti-twitter"></i>Twitter</a></li>
-								</ul>
-							</div>
+							<!-- <div class="modal-divider"><span>Or login via</span></div> -->
 							
-							<div class="social-login mb-3">
-								<ul>
-									<li>
-										<input id="reg" class="checkbox-custom" name="reg" type="checkbox">
-										<label for="reg" class="checkbox-custom-label">Save Password</label>
-									</li>
-									<li><a href="#" class="theme-cl">Forget Password?</a></li>
-								</ul>
-							</div>
+							
+							
 							
 							<div class="text-center">
-								<p class="mt-2">Haven't Any Account? <a href="register.html" class="link">Click here</a></p>
+								<p class="mt-2">Haven't Any Account? <a href="/" class="link">Click here</a></p>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+
+			<!-- Forgot Password -->
+			
 			<!-- End Modal -->
 			
 			<!-- Sign Up Modal -->
@@ -391,7 +389,7 @@
 						<div class="hm_nav">
 							<h3 class="hm_nav_title">Sign Up</h3>
 							<span class="mod-close" data-dismiss="modal" aria-hidden="true"><i class="ti-close"></i></span>
-							<span class="mod-close">Clear</span>
+							<span class="mod-close" data-dismiss="modal">Clear</span>
 						</div>
 					</header>
 					<div class="modal-content" id="sign-up">

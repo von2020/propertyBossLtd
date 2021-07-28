@@ -19,7 +19,7 @@ class PropertyAdmin(admin.ModelAdmin):
     list_display = ('title', 'status', 'types','created_on',)
     list_filter = ("title",)
     search_fields = ['title', 'created_on']
-    prepopulated_fields = {'slug': ('title',)}
+    # prepopulated_fields = {'slug': ('title',)}
 
 class FeaturedPropertyAdmin(admin.ModelAdmin):
     list_display = ('title', 'status', 'types','created_on',)
